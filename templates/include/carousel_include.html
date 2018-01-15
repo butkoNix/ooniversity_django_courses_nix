@@ -1,0 +1,35 @@
+{% load static %}
+
+
+<div class="row col-md-3">
+  <div id="carousel-example-generic" class="carousel slide" data-interval="10000" data-ride="carousel">
+    <div class="carousel-inner vertical" role="listbox">
+      <div class="item active">
+        <img src="{% static 'images/director.jpg' %}">
+        <div class="carousel-caption">
+          <p class="item-director">Et ligula arcu malesuada sagittis congue, arcu molestie nec
+            diam
+            curabitur tempus enim metus cursus.
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="{% static 'images/manager.jpg' %}">
+        <div class="carousel-caption">
+          <p class="item-manager">Eu a quam maecenas donec lectus orci tempus sed donec,
+            lectus mauris at elementum risus, ornare eros.
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="{% static 'images/founder.jpg' %}">
+        <div class="carousel-caption">
+          <p class="item-founder">Auctor justo magna sagittis, integer sagittis arcu elementum
+            urna nec at
+            donec sodales diam ultricies auctor odio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
