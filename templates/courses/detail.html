@@ -1,102 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Course</title>
-    {% load static %}
-    <!-- Bootstrap -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Project -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% extends 'base.html' %}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="{% static 'js/html5shiv.min.js' %}"></script>
-        <script src="{% static 'js/respond.min.js' %}"></script>
-      <![endif]-->
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse bursaka-nav">
-      <div class="container-fluid active">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'index' %}">Main</a></li>
-            <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:list_view' %}?course_id={{ course.id }}">Students</a></li>
-          </ul>
+{% block title %}Course{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="col-md-12">
+    <div class="jumbotron">
+      <h1 class="text-left text-uppercase bursaka-title-lg">{{ course.name }}</h1>
+      <p class="description-content">{{ course.description|truncatechars:'32' }}</p>
+      {% if course.coach %}
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Преподаватель</h3>
+        </div>
+        <div class="panel-body">
+          <h4>
+            <a href="{% url 'coaches:detail' course.coach.id %}">
+              {{ course.coach.first_name }} {{ course.coach.last_name }}
+            </a>
+          </h4>
+          <div>{{ course.coach.description }}</div>
         </div>
       </div>
-    </nav>
-    <div class="bursaka-content">
-      <div class="jumbotron matrix-theme">
-        <div class="container">
-          <div class="col-md-12">
-            <div class="jumbotron">
-              <h1 class="text-left text-uppercase bursaka-title-lg">{{ course.name }}</h1>
-              <p class="description-content">{{ course.description }}</p>
-              {% if course.coach %}
-                <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Преподаватель</h3>
-                </div>
-                <div class="panel-body">
-                  <h4>
-                    <a href="{% url 'coaches:detail' course.coach.id %}">
-                      {{ course.coach.first_name }} {{ course.coach.last_name }}
-                    </a>
-                  </h4>
-                  <div>{{ course.coach.description }}</div>
-                </div>
-              </div>
-              {% endif %}
-              {% if course.assistant %}
-                <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Ассистент</h3>
-                </div>
-                <div class="panel-body">
-                  <h4>
-                    <a href="{% url 'coaches:detail' course.assistant.id %}">
-                      {{ course.assistant.first_name }} {{ course.assistant.last_name }}
-                    </a>
-                  </h4>
-                  <div>{{ course.assistant.description }}</div>
-                </div>
-              </div>
-              {% endif %}
-              <h3>План курса:</h3>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Тема</th>
-                    <th>Описание</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for lesson in lesson_list %}
-                    <tr>
-                      <td>{{ lesson.order }}</td>
-                      <td>{{ lesson.subject }}</td>
-                      <td>{{ lesson.description }}</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
+      {% endif %}
+      {% if course.assistant %}
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ассистент</h3>
+        </div>
+        <div class="panel-body">
+          <h4>
+            <a href="{% url 'coaches:detail' course.assistant.id %}">
+              {{ course.assistant.first_name }} {{ course.assistant.last_name }}
+            </a>
+          </h4>
+          <div>{{ course.assistant.description }}</div>
         </div>
       </div>
+      {% endif %}
+      <h3>План курса:</h3>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Тема</th>
+          <th>Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lesson_list %}
+        <tr>
+          <td>{{ lesson.order }}</td>
+          <td>{{ lesson.subject }}</td>
+          <td>{{ lesson.description }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <footer class="bursaka-footer"></footer>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock content %}

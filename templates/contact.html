@@ -1,129 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Contacts</title>
-    {% load static %}
-    <!-- Bootstrap -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Project -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% extends 'base.html' %}
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="{% static 'js/html5shiv.min.js' %}"></script>
-      <script src="{% static 'js/respond.min.js' %}"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse bursaka-nav">
-      <div class="container-fluid active">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'index' %}">Main</a></li>
-            <li class="active"><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="{% url 'students:list_view' %}">Students</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="bursaka-content">
-      <div class="jumbotron matrix-theme">
-        <div class="container contacts">
-          <div class="row col-md-9">
-            <div class="col-sm-6 col-md-4">
-              <div class="thumbnail">
-                <div class="caption">
-                  <img src="{% static 'images/manager.jpg' %}" class="contact-image" data-holder-rendered="true">
-                  <h3>Manager</h3>
-                  <div class="caption">
-                    <div class="butsaka-address-block">
-                      <dl class="dl-horizontal">
-                        <dt class="icon-name">Name:</dt><dd>Trinity Popova</dd>
-                        <dt class="icon-skype">Skype:</dt><dd><a href="https://join.skype.com/bursaka.trinity.popova">bursaka.trinity.popova</a></dd>
-                        <dt class="icon-email">Email:</dt><dd><a href=mailto:trinity.popova@bursaka.com">trinity.popova@bursaka.com</a></dd>
-                        <dt class="icon-phone">Phone:</dt><dd>+388888888888</dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-              <div class="thumbnail">
-                <div class="caption">
-                  <img src="{% static 'images/founder.jpg' %}" class="contact-image" data-holder-rendered="true">
-                  <h3>Founder</h3>
-                  <div class="caption butsaka-address-block">
-                    <dl class="dl-horizontal">
-                      <dt class="icon-name">Name:</dt><dd>Neo Karachintsev</dd>
-                      <dt class="icon-skype">Skype:</dt><dd><a href="https://join.skype.com/bursaka.neo.karachintsev">bursaka.neo.karachintsev</a></dd>
-                      <dt class="icon-email">Email:</dt><dd><a href=mailto:neo.karachintsev@bursaka.com">neo.karachintsev@bursaka.com</a></dd>
-                      <dt class="icon-phone">Phone:</dt><dd>+388888888887</dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="{% static 'images/director.jpg' %}" class="contact-image" data-holder-rendered="true">
-                    <h3>Director</h3>
-                    <div class="caption butsaka-address-block">
-                      <dl class="dl-horizontal">
-                        <dt class="icon-name">Name:</dt><dd>Morpheus Ziberstain</dd>
-                        <dt class="icon-skype">Skype:</dt><dd><a href="https://join.skype.com/bursaka.morpheus.ziberstain">bursaka.morpheus.ziberstain</a></dd>
-                        <dt class="icon-email">Email:</dt><dd><a href=mailto:morpheus.ziberstain@bursaka.com">morpheus.ziberstain@bursaka.com</a></dd>
-                        <dt class="icon-phone">Phone:</dt><dd>+388888888889</dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="row col-md-3">
-            <div id="carousel-example-generic" class="carousel slide" data-interval="10000" data-ride="carousel">
-              <div class="carousel-inner vertical" role="listbox">
-                <div class="item active">
-                  <img src="{% static 'images/director.jpg' %}">
-                  <div class="carousel-caption">
-                    <p class="item-director">Et ligula arcu malesuada sagittis congue, arcu molestie nec diam
-                      curabitur tempus enim metus cursus.
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="{% static 'images/manager.jpg' %}">
-                  <div class="carousel-caption">
-                    <p class="item-manager">Eu a quam maecenas donec lectus orci tempus sed donec,
-                      lectus mauris at elementum risus, ornare eros.
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="{% static 'images/founder.jpg' %}">
-                  <div class="carousel-caption">
-                    <p class="item-founder">Auctor justo magna sagittis, integer sagittis arcu elementum urna nec at
-                      donec sodales diam ultricies auctor odio.
-                    </p>
-                  </div>
-                </div>
-              </div>
+{% load static %}
+
+
+{% block title %}Contacts{% endblock %}
+
+
+{% block nav_class_contacts %}active{% endblock %}
+
+
+{% block content %}
+<div class="container contacts">
+  <div class="row col-md-9">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <img src="{% static 'images/manager.jpg' %}" class="contact-image"
+               data-holder-rendered="true">
+          <h3>Manager</h3>
+          <div class="caption">
+            <div class="butsaka-address-block">
+              <dl class="dl-horizontal">
+                <dt class="icon-name">Name:</dt>
+                <dd>Trinity Popova</dd>
+                <dt class="icon-skype">Skype:</dt>
+                <dd><a href="https://join.skype.com/bursaka.trinity.popova">bursaka.trinity.popova</a>
+                </dd>
+                <dt class="icon-email">Email:</dt>
+                <dd><a href=mailto:trinity.popova@bursaka.com">trinity.popova@bursaka.com</a>
+                </dd>
+                <dt class="icon-phone">Phone:</dt>
+                <dd>+388888888888</dd>
+              </dl>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <footer class="bursaka-footer"></footer>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  </body>
-</html>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <img src="{% static 'images/founder.jpg' %}" class="contact-image"
+               data-holder-rendered="true">
+          <h3>Founder</h3>
+          <div class="caption butsaka-address-block">
+            <dl class="dl-horizontal">
+              <dt class="icon-name">Name:</dt>
+              <dd>Neo Karachintsev</dd>
+              <dt class="icon-skype">Skype:</dt>
+              <dd><a href="https://join.skype.com/bursaka.neo.karachintsev">bursaka.neo.karachintsev</a>
+              </dd>
+              <dt class="icon-email">Email:</dt>
+              <dd><a href=mailto:neo.karachintsev@bursaka.com">neo.karachintsev@bursaka.com</a>
+              </dd>
+              <dt class="icon-phone">Phone:</dt>
+              <dd>+388888888887</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <img src="{% static 'images/director.jpg' %}" class="contact-image"
+               data-holder-rendered="true">
+          <h3>Director</h3>
+          <div class="caption butsaka-address-block">
+            <dl class="dl-horizontal">
+              <dt class="icon-name">Name:</dt>
+              <dd>Morpheus Ziberstain</dd>
+              <dt class="icon-skype">Skype:</dt>
+              <dd><a href="https://join.skype.com/bursaka.morpheus.ziberstain">bursaka.morpheus.ziberstain</a>
+              </dd>
+              <dt class="icon-email">Email:</dt>
+              <dd>
+                <a href=mailto:morpheus.ziberstain@bursaka.com">morpheus.ziberstain@bursaka.com</a>
+              </dd>
+              <dt class="icon-phone">Phone:</dt>
+              <dd>+388888888889</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% include 'include/carousel_include.html' %}
+</div>
+{% endblock content %}
