@@ -1,15 +1,25 @@
 from django.shortcuts import render
+from django import forms
+
+
+class QuadraticForm(forms.Form):
+
+    a = forms.CharField(max_length=10)
+    b = forms.CharField(max_length=10)
+    c = forms.CharField(max_length=10)
 
 
 def quadratic_results(request):
     args = collect_args(request)
-    arguments = validate(args)
-    if not arguments['error']:
-        arguments['descr'] = get_descriminant(arguments)
-    if not arguments['error']:
-        arguments['result_text'] = get_result_text(arguments)
+    context = validate(args)
+    form = QuadraticForm()
+    context['form'] = form
+    if not context['error']:
+        context['descr'] = get_descriminant(context)
+    if not context['error']:
+        context['result_text'] = get_result_text(context)
 
-    return render(request, "quadratic/results.html", arguments)
+    return render(request, "quadratic/results.html", context)
 
 
 def collect_args(request):
