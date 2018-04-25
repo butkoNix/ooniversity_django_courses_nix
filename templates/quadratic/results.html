@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Quadratic{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="col-md-12">
+    <div class="jumbotron">
+
+      <h3>Квадратное уравнение a*x*x+b*x+c = 0</h3>
+      <form method="get">
+        {{ form.as_p }}
+        <button>Решить</button>
+      </form>
+
+      {% if result_text %}
+        <p>Дискриминант: {{ discriminant }}</p>
+        <p>{{ result_text }}</p>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endblock content %}
