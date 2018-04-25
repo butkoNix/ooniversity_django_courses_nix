@@ -32,6 +32,11 @@
       </div>
     </nav>
     <div class="bursaka-content">
+      {% if messages %}
+        {% for message in messages %}
+          <div role="alert" {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+      {% endif %}
       <div class="jumbotron matrix-theme">
       {% block content %}
 
