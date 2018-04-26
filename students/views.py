@@ -29,8 +29,36 @@ def student_add(request):
             messages.success(request, 'Студент добавлен!')
 
             return redirect('/students/')
-        else:
-            messages.error(request, 'ну сука заполни же ты поля!')
     else:
         model_form = ModelStudentForm()
     return render(request, 'students/add.html', {'model_form': model_form})
+
+
+def student_remove(request, pk):
+    try:
+        student = Student.objects.get(id=pk)
+        if request.method == 'POST':
+            student.delete()
+            messages.success(request, 'Студент %s %s успешно удален!' % (student.name, student.surname))
+            return redirect('/students/')
+    except Student.DoesNotExist:
+        return redirect('/students/')
+
+    return render(request, 'students/remove.html', {'student': student})
+
+
+def student_edit(request, pk):
+    try:
+        student = Student.objects.get(id=pk)
+        if request.method == 'POST':
+            form = ModelStudentForm(request.POST, instance=student)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Данные изменены.')
+                return redirect('/students/')
+        else:
+            form = ModelStudentForm(instance=student)
+    except Student.DoesNotExist:
+        return redirect('/students/')
+
+    return render(request, 'students/edit.html', {'student': student, 'form': form})
