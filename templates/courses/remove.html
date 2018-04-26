@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Course{% endblock %}
+
+
+{% block nav_class_courses %}active{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="jumbotron">
+      <h2>Курс {{ course.name }} будет удален</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <button>Удалить</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

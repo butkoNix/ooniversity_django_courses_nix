@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+
+{% block nav_class_courses %}active{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="jumbotron">
+      <h2>Редактирование данных курса</h2>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Изменить</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

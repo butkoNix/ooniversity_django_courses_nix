@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^quadratic/', include('quadratic.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^students/', include('students.urls')),
-    url(r'^', include('courses.urls')),
+    url(r'^courses/', include('courses.urls')),
     url(r'^coaches/', include('coaches.urls')),
 
     url(r'^admin/', admin.site.urls),
