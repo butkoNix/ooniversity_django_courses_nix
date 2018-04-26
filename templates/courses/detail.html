@@ -39,6 +39,7 @@
         </div>
       </div>
       {% endif %}
+      <a href="{% url 'courses:lesson_add' course.id %}"><button type="button" class="btn btn-primary btn-xs">➕ Добавить занятие</button></a>
       <h3>План курса:</h3>
       <table class="table table-striped">
         <thead>

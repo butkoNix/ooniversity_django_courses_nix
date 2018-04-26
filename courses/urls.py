@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^remove/(?P<pk>[0-9]+)/$', courses_views.course_remove, name='course_remove'),
     url(r'^edit/(?P<pk>[0-9]+)/$', courses_views.course_edit, name='course_edit'),
     url(r'^$', courses_views.list_view, name='list_view'),
+
+    url(r'^(?P<pk>[0-9]+)/add_lesson/$', courses_views.lesson_add, name='lesson_add'),
 ]

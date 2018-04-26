@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound
 from django.contrib import messages
 from courses.models import Course, Lesson
-from courses.forms import ModelCourseForm
+from courses.forms import ModelCourseForm, ModelLessonForm
 
 
 def detail(request, pk):
@@ -29,7 +29,7 @@ def course_add(request):
         model_form = ModelCourseForm(request.POST)
         if model_form.is_valid():
             model_form.save()
-            messages.success(request, 'Студент добавлен!')
+            messages.success(request, 'Course %s has been successfully added.' % model_form.name)
 
             return redirect('/courses/')
     else:
@@ -42,7 +42,7 @@ def course_remove(request, pk):
         course = Course.objects.get(id=pk)
         if request.method == 'POST':
             course.delete()
-            messages.success(request, 'Курс %s успешно удален!' % course.name)
+            messages.success(request, 'Course %s has been deleted!' % course.name)
             return redirect('/courses/')
     except Course.DoesNotExist:
         return redirect('/courses/')
@@ -57,7 +57,7 @@ def course_edit(request, pk):
             form = ModelCourseForm(request.POST, instance=course)
             if form.is_valid():
                 form.save()
-                messages.success(request, 'Данные изменены.')
+                messages.success(request, 'The changes have been saved.')
                 return redirect('/courses/')
         else:
             form = ModelCourseForm(instance=course)
@@ -65,3 +65,16 @@ def course_edit(request, pk):
         return redirect('/courses/')
 
     return render(request, 'courses/edit.html', {'course': course, 'form': form})
+
+
+def lesson_add(request, pk):
+    if request.method == 'POST':
+        model_form = ModelLessonForm(request.POST)
+        if model_form.is_valid():
+            lesson = model_form.save()
+            messages.success(request, 'Lesson %s has been successfully added.' % lesson.subject)
+
+            return redirect('/courses/%s' % pk)
+    else:
+        model_form = ModelLessonForm()
+    return render(request, 'courses/add_lesson.html', {'model_form': model_form})
